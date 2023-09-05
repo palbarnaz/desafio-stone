@@ -1,0 +1,27 @@
+
+.header-section{
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+
+.info-header{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+ 
+}
+
+.date-p{
+  font-weight: 600;
+  color: #45505E;
+  font-size: 18px;
+}
+
+.message-p{
+  font-size: 14px;
+  color: #8C9CAD;
+  font-weight: 300;
+}
