@@ -5,13 +5,15 @@ import { IMaskInput } from "react-imask";
 import { getValueCurrency } from "@/services";
 import { FormEvent, useEffect, useState } from "react";
 import Results from "../Results";
+import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
+import CurrencyInput from 'react-currency-input-field';
 
 
 
 export default function Form() {
-  const [valueInput, setValueInput] = useState("");
+  const [valueInput, setValueInput] = useState<number | null>();
   const [currency, setCurrency] = useState<number>(0);
-  const [tax, setTax] = useState("");
+  const [tax, setTax] = useState<number | null>();
   const [total, setTotal] = useState<number>(0);
   const [valueRadio, setValueRadio] = useState<string>()
 
@@ -31,11 +33,13 @@ export default function Form() {
 
   const calculate = () => {
 
-    const value = Number(valueInput.replace(",", "."))
-    const valueTax = Number(tax.replace(",", ".")) / 100
+    const value = valueInput || 0
+    let valueTax = (tax || 0) / 100
+ 
 
     const dolarComImposto = value + (value * valueTax)
-
+    console.log(dolarComImposto);
+    
     if (valueRadio == 'cash') {
       setTotal(calculateMoneyType(dolarComImposto, value))
       return
@@ -60,57 +64,51 @@ export default function Form() {
         <div className="group-input">
           <div className="form-group">
             <label htmlFor="dolar">Dólar</label>
-
-            <IMaskInput
-              placeholder='$ '
-              mask="$ num"
-              blocks={{
-                num: {
-                  mask: Number,
-                  thousandsSeparator: '.'
-                }}}
+          <CurrencyInput
+              placeholder='$'
+              intlConfig={ {
+                locale: 'en-US',
+                currency: 'USD',
+              }}
+              decimalsLimit={6}
+              step={1}
               className='input-field'
-              name="tax"
-              type="text"
-              value={valueInput}
-              onAccept={(value, mask)=> setValueInput(mask.unmaskedValue)}
-              // onChange={(e,) => setValueInput(e.target.)}
+              onValueChange={(value,name,values)=> setValueInput(values?.float)}
               id="dolar"
               aria-label="dolar"
             />
-
           </div>
           <div className="form-group">
             <label htmlFor="tax">Taxa do Estado</label>
-            <IMaskInput 
-              placeholder='0%' 
-              mask="num %"
-              blocks={{
-                num: {
-                  mask: Number,
-                  thousandsSeparator: '.',
-                  
-                }}}
-              className='input-field'
-              type="text" name="dolar"
-              value={tax}
-              onAccept={(value, mask)=> setTax(mask.unmaskedValue)}
-              id="tax" 
-              aria-label="tax" 
-            />
 
+            <CurrencyInput
+              placeholder='0%'
+              suffix="%"
+              min={1}
+              max={100}
+              className='input-field'
+              type="text" 
+              name="dolar"
+              onValueChange={(value,name,values)=> setTax(values?.float)}
+              id="tax"
+              aria-label="tax"
+            />
           </div>
 
         </div>
 
-        <form className="form-radio">
+        <form className="form-radio" >
           <p>Tipo de compra</p>
-          <div className="group-radio">
-            <input type="radio" id="cash" onChange={(e) => setValueRadio(e.target.value)} value="cash" />
+          <div  className="group-radio">
+        
+            <input type="radio" name="myRadios"  id="cash" onChange={(e) => setValueRadio(e.target.value)} value="cash" />
             <label htmlFor="cash">Dinheiro</label>
-
-            <input type="radio" id="card" onChange={(e) => setValueRadio(e.target.value)} value="card" />
+           
+           
+           <input type="radio" name="myRadios"  id="card" onChange={(e) => setValueRadio(e.target.value)} value="card" />
             <label htmlFor="card">Cartão</label>
+          
+            
           </div>
         </form>
 
