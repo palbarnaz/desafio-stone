@@ -8,8 +8,8 @@ main{
   background-size: contain;
   background-position: right bottom ;
   background-repeat: no-repeat;
+  overflow: scroll;
 }
-
 
 
 .content-section{
@@ -21,4 +21,14 @@ main{
   
 }
 
+@media screen and (max-width: 420px) {
+
+  main{
+    background-image: none;
+  }
+
+  .content-section {
+    margin: 30px; 
+   }
+}
 

@@ -25,3 +25,12 @@
   color: #8C9CAD;
   font-weight: 300;
 }
+
+@media screen and (max-width: 420px) {
+  .header-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+}

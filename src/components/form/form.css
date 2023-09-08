@@ -1,7 +1,7 @@
 
 .form-container{
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   flex-direction: column;
   font-size: 18px;
   height: 50%;
@@ -15,6 +15,7 @@
   /* margin-right: 20px; */
 }
 
+
 .input-field{
     width: 168px;
     height: 56px;
@@ -22,6 +23,9 @@
     padding-left: 10px;
     border-radius: 5px;
     border: #D7E0EB 1px solid;
+}
+input:focus-visible {
+  outline: 2px solid #008B57
 }
 
 .group-input{
@@ -32,13 +36,17 @@
 .form-radio{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     height: 100%;
+    gap: 16px;
+   
 }
-
+ 
 .group-radio{
   font-size: 16px;
   font-weight: 400;
+  display: flex;
+ gap: 10px;
+ align-items: center;
 }
 
 .btn-container{
@@ -54,5 +62,37 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+ 
+}
+
+.btn-container:hover {
+  background-color:#008B57;
+  border: 1px solid #008B57;
+  transition: 0.7s;
+ 
+}
+
+  input[type="radio"]{
+  width: 14px;
+  height: 14px;
+}
+
+
+
+
+@media screen and (max-width: 420px) {
+  .form-container{
+    gap: 20px;
+     margin-top: 20px;
+  }
+
+  .group-input{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+  }
+
+  
 }
 
