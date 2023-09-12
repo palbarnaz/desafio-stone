@@ -4,9 +4,10 @@ import { IMaskInput } from "react-imask";
 
 import { getValueCurrency } from "@/services";
 import { FormEvent, useEffect, useState } from "react";
-import Results from "../Results";
+
 import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
 import CurrencyInput from 'react-currency-input-field';
+import Results from '../results/Results';
 
 
 

@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   gap: 48px;
+  
 }
 
 
@@ -11,13 +12,17 @@
   height: 100%;
   flex-direction: column;
   justify-content: center;
+  gap: 8px;
  
 }
 
 .date-p{
-  font-weight: 600;
-  color: #45505E;
-  font-size: 18px;
+    font-weight: 600;
+    color: #45505E;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+  
 }
 
 .message-p{
