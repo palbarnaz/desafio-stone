@@ -1,4 +1,5 @@
 import { formatCurrency, formatCurrencyDolar } from "@/utils/formatCurrency";
+import { timeStamp } from "console";
 import { SetStateAction } from "react";
 import './results.css';
 
@@ -29,7 +30,7 @@ export default function Results ({result, tax, type, currency, returnCalculate}:
        </div>
 
         <div className="radio-block">
-        <p> Compra no {type} e taxa de {tax}%</p>
+        <p> Compra no {type == "card" ? "cartão" : "dinheiro"} e taxa de {tax}%</p>
          <p>Cotação do dólar: {formatCurrencyDolar(1)} = {formatCurrency(currency)}</p>
         </div>
         
